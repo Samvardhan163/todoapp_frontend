@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Condiment&display=swap");
+.header {
+  background-color: #9395d3;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 60px;
+  font-weight: bold;
+  font-family: "Condiment";
+  color: white;
+  display: flex;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0px 0px 20px 20px;
+}
+body {
+  margin: 0;
+}

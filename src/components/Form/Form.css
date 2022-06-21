@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Condiment&display=swap");
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 50;
+}
+.todo-form {
+  position: relative;
+  width: 200px;
+}
+.todo-text {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 60px;
+  width: 400px;
+  padding: 50px;
+}
+.form-container label {
+  font-family: "Condiment";
+  font-size: x-large;
+  color: #5ec1eb;
+}

@@ -1,0 +1,14 @@
+.plus {
+  font-size: 25px;
+  color: white;
+  margin: 10px;
+  border-radius: 50%;
+  background-color: #5ec1eb;
+  padding: 10px;
+  cursor: pointer;
+}
+.add {
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
+}
