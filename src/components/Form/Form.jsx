@@ -12,6 +12,7 @@ export default function Form() {
           <label>Proirity</label>
           <input type="checkbox"></input>
         </div>
+        <button className="form-submit">Add</button>
       </form>
     </div>
   );
