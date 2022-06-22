@@ -1,5 +1,5 @@
 const path = require("path");
-
+const port = process.env.PORT || 3000;
 module.exports = {
   mode: "development",
   entry: "./index.js",
@@ -43,5 +43,11 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
+  },
+  devServer: {
+    host: "localhost",
+    port: port,
+    historyApiFallback: true,
+    open: true,
   },
 };

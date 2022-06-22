@@ -8,24 +8,28 @@
   border-radius: 10px;
 }
 .todo-form {
-  position: relative;
-  width: 50%;
+  /* position: relative; */
+  /* width: 50%; */
   padding: 100px;
-  right: 10px;
+  /* right: 10px; */
   height: 300px;
   background-color: #b3b7ee;
   border-radius: 10px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  text-align: center;
 }
 .todo-text {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  gap: 60px;
+  /* gap: 60px; */
   width: 400px;
   padding: 20px;
 }
 .form-container label {
-  font-family: "Condiment";
+  font-family: "Times New Roman", Times, serif;
   font-size: x-large;
   color: white;
 }
@@ -34,27 +38,28 @@ input[type="text"] {
   border-radius: 8px;
 }
 .todo-checkbox {
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   flex-direction: row;
-  left: 1000px;
+  /* left: 1000px; */
   justify-content: space-evenly;
-  left: 150px;
+  /* left: 150px; */
   padding: 20px;
-  gap: 100px;
+  width: 400px;
+  /* gap: 100px; */
 }
 input[type="checkbox"] {
   border-radius: 8px;
 }
 .form-submit {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  left: 270px;
-  bottom: 200px;
+  /* position: absolute; */
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* align-items: center; */
+  /* justify-content: space-evenly; */
+  /* left: 270px; */
+  /* bottom: 200px; */
   font-size: medium;
   border-radius: 8px;
-  background-color: rgb(30, 219, 30);
+  background-color: rgb(196, 235, 137);
 }

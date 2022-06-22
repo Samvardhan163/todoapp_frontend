@@ -5,14 +5,12 @@ import AddFormPage from "./pages/AddFormPage";
 const App = () => {
   return (
     <div className="TodoApp">
-      {/* <Router>
+      <Router>
         <Routes>
           <Route path="/" element={<TodoPage />} />
-          <Route path="/create" element={<TodoPage />} />
+          <Route path="/create" element={<AddFormPage></AddFormPage>} />
         </Routes>
-      </Router> */}
-      {/* <TodoPage></TodoPage> */}
-      <AddFormPage></AddFormPage>
+      </Router>
     </div>
   );
 };
