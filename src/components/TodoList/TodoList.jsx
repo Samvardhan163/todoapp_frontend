@@ -1,69 +1,15 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoFooter from "../TodoFooter/TodoFooter";
-import {
-  FaAlignCenter,
-  FaEdit,
-  FaHeart,
-  FaPlus,
-  FaStar,
-  FaTrash,
-  FaTrashAlt,
-  IconName,
-} from "react-icons/fa";
+import { FaEdit, FaStar, FaTrash } from "react-icons/fa";
 import "./TodoList.css";
-export default function TodoList() {
-  const [todos, SetTodos] = useState([
-    {
-      id: 1,
-      description: "Playing",
-      completed: false,
-      priority: false,
-    },
-    {
-      id: 2,
-      description: "sleepingrbfn dkvldjfvnfjdnvfj jdnf sbilnheb vjn rbehbv",
-      completed: false,
-      priority: false,
-    },
-    {
-      id: 3,
-      description: "Playing",
-      completed: false,
-      priority: false,
-    },
-    {
-      id: 4,
-      description: "sleepingrbfn dkvldjfvnfjdnvfj jdnf sbilnheb vjn rbehbv",
-      completed: false,
-      priority: false,
-    },
-    {
-      id: 5,
-      description: "Playing",
-      completed: false,
-      priority: false,
-    },
-    {
-      id: 6,
-      description: "sleepingrbfn dkvldjfvnfjdnvfj jdnf sbilnheb vjn rbehbv",
-      completed: false,
-      priority: false,
-    },
-    {
-      id: 7,
-      description: "Playing",
-      completed: false,
-      priority: false,
-    },
-    {
-      id: 8,
-      description:
-        "sleepingrbfn dkvldjfvnfjdnvfj jdnf sbilnheb vjn rbehbv dnefsndvfbd b  ",
-      completed: false,
-      priority: false,
-    },
-  ]);
+export default function TodoList(props) {
+  const [todos, SetTodos] = useState([]);
+
+  useEffect(() => {
+    console.log(props.todos);
+    SetTodos(props.todos.data ? props.todos.data : []);
+  }, [props]);
 
   function updateTodo(id) {
     let updatedTaskPriority = todos.map((todo) => {
@@ -91,7 +37,11 @@ export default function TodoList() {
     <>
       <div className="grid-container">
         {todos.map((todo) => (
-          <div className="todo-card" key={todo.id}>
+          <div
+            className="todo-card"
+            key={todo.id}
+            data-testid={`todo-card-${todo.id}`}
+          >
             <div
               className={`todo-task ${todo.completed && "todo-task-completed"}`}
               onClick={() => {
@@ -104,7 +54,6 @@ export default function TodoList() {
               className={`todo-priority ${
                 todo.priority && "todo-priority-active"
               }`}
-              data-testid={`todo-priority-${todo.id}`}
               onClick={() => {
                 updateTodo(todo.id);
               }}
