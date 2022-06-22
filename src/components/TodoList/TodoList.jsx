@@ -104,6 +104,7 @@ export default function TodoList() {
               className={`todo-priority ${
                 todo.priority && "todo-priority-active"
               }`}
+              data-testid={`todo-priority-${todo.id}`}
               onClick={() => {
                 updateTodo(todo.id);
               }}
