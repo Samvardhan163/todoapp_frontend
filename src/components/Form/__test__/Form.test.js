@@ -11,4 +11,13 @@ describe("Form", () => {
 
     expect(inputElement).toHaveValue("playing");
   });
+
+  it("should able to check the checkbox", () => {
+    render(<Form></Form>);
+    const checkboxElement = screen.getByRole("checkbox");
+
+    fireEvent.click(checkboxElement);
+
+    expect(checkboxElement).toBeChecked;
+  });
 });
