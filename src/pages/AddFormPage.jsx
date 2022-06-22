@@ -3,8 +3,8 @@ import AddForm from "../components/AddForm/AddForm";
 
 export default function AddFormPage() {
   return (
-    <contanier>
+    <div>
       <AddForm></AddForm>
-    </contanier>
+    </div>
   );
 }
