@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import TodoFooter from "../TodoFooter/TodoFooter";
 import { FaEdit, FaStar, FaTrash } from "react-icons/fa";
 import "./TodoList.css";
+import { useNavigate } from "react-router-dom";
 export default function TodoList(props) {
   const [todos, SetTodos] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     console.log(props.todos);
-    SetTodos(props.todos.data ? props.todos.data : []);
+    SetTodos(props.todos ? props.todos : []);
   }, [props]);
 
   function updateTodo(id) {
@@ -59,7 +60,13 @@ export default function TodoList(props) {
               }}
             ></FaStar>
             <FaTrash className="todo-delete"></FaTrash>
-            <FaEdit className="todo-edit"></FaEdit>
+            <FaEdit
+              className="todo-edit"
+              onClick={() => {
+                navigate(`/create/${todo.id}`);
+                console.log(todo.id);
+              }}
+            ></FaEdit>
           </div>
         ))}
       </div>

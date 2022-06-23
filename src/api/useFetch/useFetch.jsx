@@ -16,7 +16,7 @@ export default function (url) {
               console.log(res);
               throw Error("Data is not fetched");
             }
-            return res;
+            return res.data;
           })
           .then((data) => {
             setdata(data);

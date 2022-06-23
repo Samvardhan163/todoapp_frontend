@@ -9,6 +9,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<TodoPage />} />
           <Route path="/create" element={<AddFormPage></AddFormPage>} />
+          <Route path="/create/:id" element={<AddFormPage></AddFormPage>} />
         </Routes>
       </Router>
     </div>

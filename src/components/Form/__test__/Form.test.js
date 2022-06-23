@@ -20,4 +20,12 @@ describe("Form", () => {
 
     expect(checkboxElement).toBeChecked;
   });
+
+  it("should able to check the button in the form", () => {
+    render(<Form></Form>);
+
+    const buttonElement = screen.getByRole("button", { name: /Add/i });
+
+    expect(buttonElement).toBeInTheDocument;
+  });
 });
