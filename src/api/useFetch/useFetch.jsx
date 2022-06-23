@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
-export default function (url) {
+export default function useFetch(url) {
   {
     const [data, setdata] = useState(null);
     const [isPending, setPending] = useState(true);

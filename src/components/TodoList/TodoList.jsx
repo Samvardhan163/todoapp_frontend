@@ -4,13 +4,14 @@ import TodoFooter from "../TodoFooter/TodoFooter";
 import { FaEdit, FaStar, FaTrash } from "react-icons/fa";
 import "./TodoList.css";
 import { useNavigate } from "react-router-dom";
+import useDelete from "../../api/useDelete/useDelete";
 export default function TodoList(props) {
   const [todos, SetTodos] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     console.log(props.todos);
     SetTodos(props.todos ? props.todos : []);
-  }, [props]);
+  }, [props, todos]);
 
   function updateTodo(id) {
     let updatedTaskPriority = todos.map((todo) => {
@@ -59,7 +60,12 @@ export default function TodoList(props) {
                 updateTodo(todo.id);
               }}
             ></FaStar>
-            <FaTrash className="todo-delete"></FaTrash>
+            <FaTrash
+              className="todo-delete"
+              onClick={() => {
+                useDelete("http://localhost:8080/api/todo/" + todo.id);
+              }}
+            ></FaTrash>
             <FaEdit
               className="todo-edit"
               onClick={() => {

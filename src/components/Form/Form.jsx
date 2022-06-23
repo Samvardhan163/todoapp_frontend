@@ -3,10 +3,14 @@ import "./Form.css";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import useFetch from "../../api/useFetch/useFetch";
+import useCreate from "../../api/useCreate/useCreate";
+import useEdit from "../../api/useEdit/useEdit";
+
 export default function Form() {
   const [description, Setdescription] = useState("");
-  const [completed, Setcompleted] = useState("");
-  const [priority, Setpriority] = useState("");
+  const [completed, Setcompleted] = useState(false);
+  const [priority, Setpriority] = useState(false);
+  const navigate = useNavigate();
   const { id } = useParams();
   function operation(id) {
     if (id > 0) {
@@ -28,10 +32,22 @@ export default function Form() {
       Setpriority(todo.priority);
     }
   }, [todo]);
-  console.log(completed);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const todo = { description, completed, priority };
+    if (id == null) {
+      useCreate(todo, "http://localhost:8080/api/todo");
+      navigate("/");
+    } else {
+      useEdit(todo, "http://localhost:8080/api/todo/" + id);
+      navigate("/");
+    }
+  }
+
   return (
     <div className="form-container">
-      <form className="todo-form">
+      <form className="todo-form" onSubmit={handleSubmit}>
         <div className="todo-text">
           <label>Todo Description</label>
           <input

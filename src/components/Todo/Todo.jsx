@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../Header/Header";
 import TodoList from "../TodoList/TodoList";
 import { useState } from "react";
@@ -56,11 +56,13 @@ export default function Todo() {
   //   },
   // ]);
 
-  const {
+  var {
     data: todos,
     isPending,
     error,
   } = useFetch("http://localhost:8080/api/todo/");
+
+  useEffect(() => {});
 
   return (
     <div className="todo">
