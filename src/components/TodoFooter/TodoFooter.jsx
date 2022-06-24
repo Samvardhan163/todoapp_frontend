@@ -10,7 +10,6 @@ export default function TodoFooter() {
         className="plus"
         data-testid="plus"
         onClick={() => {
-          console.log("cool");
           navigate("/create");
         }}
       ></FaPlus>

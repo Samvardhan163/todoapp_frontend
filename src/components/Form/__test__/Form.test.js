@@ -1,5 +1,11 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Form from "../Form";
+const mockedNavigate = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockedNavigate,
+}));
 
 describe("Form", () => {
   it("should able to type into the input", () => {
@@ -14,7 +20,7 @@ describe("Form", () => {
 
   it("should able to check the checkbox", () => {
     render(<Form></Form>);
-    const checkboxElement = screen.getByRole("checkbox");
+    const checkboxElement = screen.getByTestId("priority");
 
     fireEvent.click(checkboxElement);
 

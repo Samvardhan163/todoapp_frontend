@@ -5,13 +5,16 @@ import { FaEdit, FaStar, FaTrash } from "react-icons/fa";
 import "./TodoList.css";
 import { useNavigate } from "react-router-dom";
 import useDelete from "../../api/useDelete/useDelete";
-export default function TodoList(props) {
+import useFetch from "../../api/useFetch/useFetch";
+export default function TodoList() {
   const [todos, SetTodos] = useState([]);
   const navigate = useNavigate();
+
+  const { data: task, refetch } = useFetch("http://localhost:8080/api/todo/");
+
   useEffect(() => {
-    console.log(props.todos);
-    SetTodos(props.todos ? props.todos : []);
-  }, [props, todos]);
+    SetTodos(task ? task : []);
+  }, [task]);
 
   function updateTodo(id) {
     let updatedTaskPriority = todos.map((todo) => {
@@ -63,7 +66,11 @@ export default function TodoList(props) {
             <FaTrash
               className="todo-delete"
               onClick={() => {
-                useDelete("http://localhost:8080/api/todo/" + todo.id);
+                useDelete("http://localhost:8080/api/todo/" + todo.id).then(
+                  () => {
+                    refetch();
+                  }
+                );
               }}
             ></FaTrash>
             <FaEdit

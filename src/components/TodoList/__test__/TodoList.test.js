@@ -1,29 +1,54 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import TodoList from "../TodoList";
+import { BrowserRouter } from "react-router-dom";
 
-const mockedNavigate = jest.fn();
+import { rest } from "msw";
+import { setupServer } from "msw/node";
 
-jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"),
-  useNavigate: () => mockedNavigate,
-}));
-
-describe("TodoList", () => {
-  it("should render the color change of the priority button", () => {
-    const fakeTodo = {
-      data: [
+const todoResponse = rest.get(
+  "http://localhost:8080/api/todo/",
+  (req, res, ctx) => {
+    return res(
+      ctx.json([
         {
-          id: "100",
-          description: "sleeping",
-          priority: false,
-          completed: false,
+          id: 1,
+          description: "playing",
+          completed: "true",
+          priority: "true",
         },
-      ],
-    };
-    render(<TodoList todos={fakeTodo}></TodoList>);
+      ])
+    );
+  }
+);
 
-    const cardElement = screen.getByTestId("todo-card-100");
+const todoErrorResponse = rest.get(
+  "http://localhost:8080/api/todo/",
+  (req, res, ctx) => {
+    return res(ctx.status(500));
+  }
+);
 
-    expect(cardElement).toBeInTheDocument();
+const handlers = [todoResponse];
+
+const server = new setupServer(...handlers);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
+const MockTodoList = () => {
+  return (
+    <BrowserRouter>
+      <TodoList></TodoList>
+    </BrowserRouter>
+  );
+};
+describe("TodoList", () => {
+  it("should render the todo card with todo task playing ", async () => {
+    render(<MockTodoList />);
+
+    const cardElement = await screen.findByText("playing");
+
+    expect(cardElement).toBeVisible();
   });
 });

@@ -61,10 +61,11 @@ export default function Form() {
           ></input>
         </div>
         <div className="todo-checkbox">
-          <label>Proirity</label>
+          <label>priority</label>
           <input
             type="checkbox"
             checked={priority}
+            data-testid="priority"
             onClick={() => {
               Setpriority(!priority);
             }}
@@ -73,6 +74,7 @@ export default function Form() {
           <input
             type="checkbox"
             checked={completed}
+            data-testid="completed"
             onClick={() => {
               Setcompleted(!completed);
             }}

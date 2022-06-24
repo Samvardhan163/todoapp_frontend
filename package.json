@@ -27,6 +27,7 @@
     "html-loader": "^3.1.2",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.1",
+    "msw": "^0.42.3",
     "react-hot-loader": "^4.13.0",
     "sass-loader": "^13.0.0",
     "style-loader": "^3.3.1",

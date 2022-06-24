@@ -56,11 +56,7 @@ export default function Todo() {
   //   },
   // ]);
 
-  var {
-    data: todos,
-    isPending,
-    error,
-  } = useFetch("http://localhost:8080/api/todo/");
+  var { data: todos } = useFetch("http://localhost:8080/api/todo/");
 
   useEffect(() => {});
 
@@ -68,9 +64,9 @@ export default function Todo() {
     <div className="todo">
       <Header title={"TODO"}></Header>
       {/* console.log(todos); */}
-      {error && <div>{error}</div>}
+      {/* {error && <div>{error}</div>} */}
       {/* {isPending && <div>Loading.....</div>} */}
-      {todos && <TodoList todos={todos}></TodoList>}
+      {todos && <TodoList></TodoList>}
     </div>
   );
 }
