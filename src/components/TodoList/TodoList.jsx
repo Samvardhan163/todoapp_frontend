@@ -6,20 +6,26 @@ import "./TodoList.css";
 import { useNavigate } from "react-router-dom";
 import useDelete from "../../api/useDelete/useDelete";
 import useFetch from "../../api/useFetch/useFetch";
+import useEdit from "../../api/useEdit/useEdit";
 export default function TodoList() {
   const [todos, SetTodos] = useState([]);
   const navigate = useNavigate();
 
-  const { data: task, refetch } = useFetch("http://localhost:8080/api/todo/");
+  const {
+    data: task,
+    error,
+    refetch,
+  } = useFetch("http://localhost:8080/api/todo");
 
   useEffect(() => {
     SetTodos(task ? task : []);
-  }, [task]);
+  }, [task, todos]);
 
   function updateTodo(id) {
     let updatedTaskPriority = todos.map((todo) => {
       if (todo.id === id) {
         todo.priority = !todo.priority;
+        useEdit(todo, "http://localhost:8080/api/todo/" + id);
         return todo;
       } else {
         return todo;
@@ -31,6 +37,7 @@ export default function TodoList() {
     let updatedTaskCompletedStatus = todos.map((todo) => {
       if (todo.id === id) {
         todo.completed = !todo.completed;
+        useEdit(todo, "http://localhost:8080/api/todo/" + id);
         return todo;
       } else {
         return todo;

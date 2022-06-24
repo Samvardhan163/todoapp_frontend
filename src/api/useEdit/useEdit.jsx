@@ -6,6 +6,7 @@ export default function (todo, url) {
   axios
     .put(url, body, { headers: { "Content-Type": "application/json" } })
     .then((response) => {
+      console.log(response.data);
       if (response.status != 200) {
         throw Error("Data is not created");
       }

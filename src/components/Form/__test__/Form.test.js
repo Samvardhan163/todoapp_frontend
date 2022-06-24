@@ -1,5 +1,49 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import Form from "../Form";
+
+import { BrowserRouter } from "react-router-dom";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
+
+const MockForm = () => {
+  return (
+    <BrowserRouter>
+      <Form></Form>
+    </BrowserRouter>
+  );
+};
+const TodoList = () => {
+  return (
+    <BrowserRouter>
+      <TodoList></TodoList>
+    </BrowserRouter>
+  );
+};
+
+const todoResponse = rest.post(
+  "http://localhost:8080/api/todo/",
+  (req, res, ctx) => {
+    return res(
+      ctx.json([
+        {
+          id: 1,
+          description: "playing",
+          completed: "true",
+          priority: "true",
+        },
+      ])
+    );
+  }
+);
+
+const handlers = [todoResponse];
+
+const server = new setupServer(...handlers);
+
+beforeAll(() => server.listen());
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
+
 const mockedNavigate = jest.fn();
 
 jest.mock("react-router-dom", () => ({
@@ -33,5 +77,13 @@ describe("Form", () => {
     const buttonElement = screen.getByRole("button", { name: /Add/i });
 
     expect(buttonElement).toBeInTheDocument;
+  });
+
+  it("should able to post new Todo Task", () => {
+    render(<MockForm></MockForm>);
+
+    const todoElement = screen.findByText("playing");
+
+    expect(todoElement).toBeInTheDocument;
   });
 });

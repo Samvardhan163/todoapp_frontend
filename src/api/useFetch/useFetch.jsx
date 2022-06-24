@@ -23,11 +23,10 @@ export default function useFetch(url) {
       .catch((err) => {
         if (err.name === "AbortError") {
           console.log("fetch aborted");
+        } else {
+          setPending(false);
+          seterror(err.message);
         }
-        // else {
-        //   setPending(false);
-        //   seterror(err.message);
-        // }
       });
   };
 
