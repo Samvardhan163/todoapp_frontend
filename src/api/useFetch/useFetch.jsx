@@ -38,5 +38,5 @@ export default function useFetch(url) {
     fetchTodos();
   };
 
-  return { data, refetch };
+  return { data,error,refetch };
 }

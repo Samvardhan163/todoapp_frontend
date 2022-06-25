@@ -19,7 +19,7 @@ export default function TodoList() {
 
   useEffect(() => {
     SetTodos(task ? task : []);
-  }, [task, todos]);
+  }, [task]);
 
   function updateTodo(id) {
     let updatedTaskPriority = todos.map((todo) => {
