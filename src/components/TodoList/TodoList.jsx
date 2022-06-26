@@ -66,6 +66,7 @@ export default function TodoList() {
               className={`todo-priority ${
                 todo.priority && "todo-priority-active"
               }`}
+              data-testid={`todo-priority-${todo.id}`}
               onClick={() => {
                 updateTodo(todo.id);
               }}
@@ -82,9 +83,9 @@ export default function TodoList() {
             ></FaTrash>
             <FaEdit
               className="todo-edit"
+              data-testid={`todo-edit-${todo.id}`}
               onClick={() => {
                 navigate(`/create/${todo.id}`);
-                console.log(todo.id);
               }}
             ></FaEdit>
           </div>

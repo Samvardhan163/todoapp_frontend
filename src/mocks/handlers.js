@@ -25,4 +25,16 @@ export const handlers = [
       ])
     );
   }),
+  rest.put("http://localhost:8080/api/todo/1", (req, res, ctx) => {
+    return res(
+      ctx.json([
+        {
+          id: 1,
+          description: "sleeping",
+          completed: "true",
+          priority: "true",
+        },
+      ])
+    );
+  }),
 ];
