@@ -37,4 +37,7 @@ export const handlers = [
       ])
     );
   }),
+  rest.delete("http://localhost:8080/api/todo/1", (req, res, ctx) => {
+    return res(ctx.status(200));
+  }),
 ];

@@ -1,4 +1,9 @@
-import { screen, render, fireEvent } from "@testing-library/react";
+import {
+  screen,
+  render,
+  fireEvent,
+  waitForElementToBeRemoved,
+} from "@testing-library/react";
 import TodoList from "../TodoList";
 import { BrowserRouter } from "react-router-dom";
 import { server } from "../../../mocks/server";
@@ -44,17 +49,7 @@ describe("TodoList", () => {
     expect(cardElement).toBeVisible();
   });
 
-  // it("should render the todo card with todo task with star", async () => {
-  //   render(<TodoList></TodoList>);
-
-  //   const starElement = await screen.findByTestId("todo-priority-1");
-
-  //   fireEvent.click(starElement);
-
-  //   expect(starElement).toHaveStyle({ color: "yellow" });
-  // });
-
-  it("should render the  todo card with todo task with edit button ", async () => {
+  it("should render the  todo card with todo task with edit button and navigate to the form Page ", async () => {
     render(<TodoList></TodoList>);
     const editElement = await screen.findByTestId("todo-edit-1");
 
@@ -62,4 +57,11 @@ describe("TodoList", () => {
 
     expect(mockedNavigate).toBeCalledWith("/create/1");
   });
+  // it("should render the  todo card with todo task with delete button ", async () => {
+  //   render(<TodoList></TodoList>);
+  //   const deleteElement = await screen.findByTestId("todo-delete-1");
+
+  //   fireEvent.click(deleteElement);
+
+  // });
 });

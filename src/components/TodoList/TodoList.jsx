@@ -73,10 +73,12 @@ export default function TodoList() {
             ></FaStar>
             <FaTrash
               className="todo-delete"
+              data-testid={`todo-delete-${todo.id}`}
               onClick={() => {
                 useDelete("http://localhost:8080/api/todo/" + todo.id).then(
                   () => {
                     refetch();
+                    console.log("deleted bro");
                   }
                 );
               }}
