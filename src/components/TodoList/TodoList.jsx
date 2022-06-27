@@ -10,7 +10,6 @@ import useEdit from "../../api/useEdit/useEdit";
 export default function TodoList() {
   const [todos, SetTodos] = useState([]);
   const navigate = useNavigate();
-
   const {
     data: task,
     error,
@@ -58,6 +57,7 @@ export default function TodoList() {
               className={`todo-task ${todo.completed && "todo-task-completed"}`}
               onClick={() => {
                 updateTodoTask(todo.id);
+                refetch();
               }}
             >
               {todo.description}
@@ -69,6 +69,7 @@ export default function TodoList() {
               data-testid={`todo-priority-${todo.id}`}
               onClick={() => {
                 updateTodo(todo.id);
+                refetch();
               }}
             ></FaStar>
             <FaTrash

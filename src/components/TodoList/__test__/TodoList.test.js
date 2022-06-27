@@ -57,11 +57,24 @@ describe("TodoList", () => {
 
     expect(mockedNavigate).toBeCalledWith("/create/1");
   });
-  // it("should render the  todo card with todo task with delete button ", async () => {
-  //   render(<TodoList></TodoList>);
-  //   const deleteElement = await screen.findByTestId("todo-delete-1");
+  it("should render the  todo card with todo task with delete button ", async () => {
+    render(<TodoList></TodoList>);
+    const deleteElement = await screen.findByTestId("todo-delete-1");
 
-  //   fireEvent.click(deleteElement);
+    fireEvent.click(deleteElement);
 
-  // });
+    const AfterdeleteElement = await screen.queryByTestId("todo-delete-1");
+
+    expect(AfterdeleteElement).toBeInTheDocument();
+  });
+
+  it("should render the todo card with todo task with star and change color", async () => {
+    render(<TodoList></TodoList>);
+
+    const priorityElement = await screen.findByTestId("todo-priority-1");
+
+    fireEvent.click(priorityElement);
+
+    expect(priorityElement).toHaveClass("todo-priority false");
+  });
 });
