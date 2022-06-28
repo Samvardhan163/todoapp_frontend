@@ -1,12 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import TodoFooter from "../TodoFooter/TodoFooter";
-import { FaEdit, FaStar, FaTrash } from "react-icons/fa";
 import "./TodoList.css";
 import { useNavigate } from "react-router-dom";
 import useDelete from "../../api/useDelete/useDelete";
 import useFetch from "../../api/useFetch/useFetch";
 import useEdit from "../../api/useEdit/useEdit";
+import TodoItem from "../TodoItem/TodoItem";
 export default function TodoList() {
   const [todos, SetTodos] = useState([]);
   const navigate = useNavigate();
@@ -48,50 +48,13 @@ export default function TodoList() {
     <>
       <div className="grid-container">
         {todos.map((todo) => (
-          <div
-            className="todo-card"
+          <TodoItem
+            todo={todo}
             key={todo.id}
-            data-testid={`todo-card-${todo.id}`}
-          >
-            <div
-              className={`todo-task ${todo.completed && "todo-task-completed"}`}
-              onClick={() => {
-                updateTodoTask(todo.id);
-                refetch();
-              }}
-            >
-              {todo.description}
-            </div>
-            <FaStar
-              className={`todo-priority ${
-                todo.priority && "todo-priority-active"
-              }`}
-              data-testid={`todo-priority-${todo.id}`}
-              onClick={() => {
-                updateTodo(todo.id);
-                refetch();
-              }}
-            ></FaStar>
-            <FaTrash
-              className="todo-delete"
-              data-testid={`todo-delete-${todo.id}`}
-              onClick={() => {
-                useDelete("http://localhost:8080/api/todo/" + todo.id).then(
-                  () => {
-                    refetch();
-                    console.log("deleted bro");
-                  }
-                );
-              }}
-            ></FaTrash>
-            <FaEdit
-              className="todo-edit"
-              data-testid={`todo-edit-${todo.id}`}
-              onClick={() => {
-                navigate(`/create/${todo.id}`);
-              }}
-            ></FaEdit>
-          </div>
+            updateTodo={updateTodo}
+            refetch={refetch}
+            updateTodoTask={updateTodoTask}
+          />
         ))}
       </div>
       <TodoFooter></TodoFooter>

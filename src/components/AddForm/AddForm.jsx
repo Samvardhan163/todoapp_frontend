@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 export default function AddForm() {
   return (
     <div className="AddForm">
-      <Header title={"Add Todo"}></Header>
+      <Header title={"Todo Form"}></Header>
       <Form></Form>
     </div>
   );

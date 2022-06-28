@@ -20,23 +20,6 @@ const { Mockdata, Mocktask, Mockrefetch } = jest.mock(
   "../../../api/useFetch/useFetch"
 );
 
-// jest.mock("../../../api/useFetch/useFetch", () => {
-//   const MockuseFetch = jest.requireActual("../../../api/useFetch/useFetch");
-//   return {
-//     ...MockuseFetch,
-//     useFetch: jest.fn(() => {
-//       [
-//         {
-//           id: 1,
-//           description: "playing",
-//           completed: "true",
-//           priority: "true",
-//         },
-//       ];
-//     }),
-//   };
-// });
-
 describe("TodoList", () => {
   beforeAll(() => server.listen());
   afterAll(() => server.close());
@@ -56,16 +39,6 @@ describe("TodoList", () => {
     fireEvent.click(editElement);
 
     expect(mockedNavigate).toBeCalledWith("/create/1");
-  });
-  it("should render the  todo card with todo task with delete button ", async () => {
-    render(<TodoList></TodoList>);
-    const deleteElement = await screen.findByTestId("todo-delete-1");
-
-    fireEvent.click(deleteElement);
-
-    const AfterdeleteElement = await screen.queryByTestId("todo-delete-1");
-
-    expect(AfterdeleteElement).toBeInTheDocument();
   });
 
   it("should render the todo card with todo task with star and change color", async () => {
