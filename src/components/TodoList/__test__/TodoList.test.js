@@ -50,4 +50,13 @@ describe("TodoList", () => {
 
     expect(priorityElement).toHaveClass("todo-priority false");
   });
+  it("should render the todo card with todo task with completion status", async () => {
+    render(<TodoList></TodoList>);
+
+    const descriptionElement = await screen.findByTestId("todo-description-1");
+
+    fireEvent.click(descriptionElement);
+
+    expect(descriptionElement).toHaveClass("todo-task false");
+  });
 });
